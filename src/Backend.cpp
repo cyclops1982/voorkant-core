@@ -45,9 +45,7 @@ bool HABackend::Start()
         cerr << "Do a damned connect first" << endl;
         return false;
     }
-    cerr<<"In start"<<endl;
     ha = std::thread(&HABackend::threadrunner, this);
-    cerr<<"Thred started"<<endl;
     ha.detach();
     return true;
 };
@@ -143,7 +141,6 @@ void HABackend::threadrunner()
             }
             else if (j["id"] == getdomains["id"])
             {
-                // cerr<<j.dump()<<endl;
                 for (auto &[domain, _services] : j["result"].items())
                 {
                     // cerr<<service.dump()<<endl;
@@ -154,8 +151,6 @@ void HABackend::threadrunner()
             }
             else if (j["type"] == "event")
             {
-                cout<<"FULL EVENT"<<endl;
-                cout<<j.dump()<<endl;
                 // something happened!
                 auto event = j["event"];
                 auto event_type = event["event_type"];
