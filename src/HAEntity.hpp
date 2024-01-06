@@ -15,6 +15,7 @@ class HAEntity
 public:
   string name;
   string id; 
+  string domain;
   HAEntity(void); // do we need this?
   HAEntity(json _state);
   ~HAEntity() {};
@@ -53,22 +54,10 @@ public:
     return ret.str();
   }
 
-  std::string getDomain(void)
-  {
-    auto id = state["entity_id"].get<std::string>();
 
-    // FIXME: boost::split might be nice here, check if its header only?
-    auto pos = id.find(".");
-
-    if (pos == std::string::npos)
-    {
-      throw std::runtime_error("entity ID [" + id + "] contains no period, has no domain?");
-    }
-
-    return id.substr(0, pos);
-  }
 private:
   json state;
+  std::string getDomain(void);
 };
 
 class HADomain

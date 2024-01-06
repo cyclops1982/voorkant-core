@@ -17,7 +17,7 @@ bool HABackend::Connect(string url, string token)
 {
     // This should connect the WSConn and do the auth
     if (url == "" || (url.substr(0, 5) != "ws://" && url.substr(0, 6) != "wss://")) {
-        cerr<<"Invalid URL provided, HA_WS_URL should start with 'ws://' or 'wss://'?"<<endl;
+        cerr<<"Invalid URL provided, HA_WS_URL should start with 'ws://' or 'wss://'"<<endl;
         return false;
     }
     wc = new WSConn(url);

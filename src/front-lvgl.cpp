@@ -165,7 +165,7 @@ void uithread(HABackend & backend, int argc, char* argv[])
             json cmd;
 
             cmd["type"]="call_service";
-            cmd["domain"]=backend.GetState(current_light)->getDomain();
+            cmd["domain"]=backend.GetState(current_light)->domain;
             cmd["service"]="toggle";
             cmd["target"]["entity_id"]=current_light;
 
@@ -185,7 +185,7 @@ void uithread(HABackend & backend, int argc, char* argv[])
             }
 
             cmd["type"]="call_service";
-            cmd["domain"]=backend.GetState(current_light)->getDomain();
+            cmd["domain"]=backend.GetState(current_light)->domain;
             cmd["service"]="turn_on";
             cmd["target"]["entity_id"]=current_light;
             cmd["service_data"]["rgb_color"] = rgb;
@@ -236,7 +236,7 @@ void uithread_refresh(HABackend *backend, std::vector<std::string> whatchanged) 
         cout<<"state for "<<changed<<" is "<<state->getInfo()<<endl;
         auto attrs = state->getJsonState()["attributes"];
         cout<<attrs<<endl;
-        if (state->getDomain() == "light") {
+        if (state->domain == "light") {
             current_light = changed;
         }
         // if(attrs.count("rgb_color")) {

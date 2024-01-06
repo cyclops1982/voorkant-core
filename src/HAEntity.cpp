@@ -18,7 +18,8 @@ HAEntity::HAEntity(json _state)
     {
         name = state["entity_id"];
     }
-    //   name = state["attributes"]["friendly_name"];
+
+    domain = this->getDomain();
 }
 
 void HAEntity::update(json _state)
@@ -29,6 +30,21 @@ void HAEntity::update(json _state)
 std::string HAEntity::toString(void)
 {
     return state.dump(2);
+}
+
+std::string HAEntity::getDomain(void)
+{
+    auto id = state["entity_id"].get<std::string>();
+
+    // FIXME: boost::split might be nice here, check if its header only?
+    auto pos = id.find(".");
+
+    if (pos == std::string::npos)
+    {
+        throw std::runtime_error("entity ID [" + id + "] contains no period, has no domain?");
+    }
+
+    return id.substr(0, pos);
 }
 
 HADomain::HADomain(json _state)
