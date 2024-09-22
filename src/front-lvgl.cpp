@@ -144,6 +144,11 @@ void uithread(int _argc, char* _argv[])
   // lv_group_t* g = lv_group_create();
   // lv_group_set_default(g);
 
+  static lv_font_t *B612font = lv_tiny_ttf_create_file_ex("A:B612-Regular.ttf", 14, 1024);
+  static lv_style_t B612style;
+  lv_style_init(&B612style);
+  lv_style_set_text_font(&B612style, B612font);
+
   /* container for object row (top 80% of screen) and logs (bottom 20%) */
   lv_obj_t* row_and_logs = lv_obj_create(lv_scr_act());
   lv_obj_remove_style_all(row_and_logs);
@@ -181,7 +186,7 @@ void uithread(int _argc, char* _argv[])
   lv_label_set_text(left_btn_txt, LV_SYMBOL_LEFT);
   lv_obj_add_event_cb(left_btn, btnLeftPress, LV_EVENT_CLICKED, NULL);
 
-  UILogBox logbox(bottom_row);
+  UILogBox logbox(bottom_row, &B612style);
 
   lv_obj_t* right_btn = lv_button_create(bottom_row);
   lv_obj_t* right_btn_txt = lv_label_create(right_btn);
