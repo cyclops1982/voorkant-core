@@ -13,9 +13,11 @@
 #include <src/font/lv_font.h>
 #include <src/font/lv_symbol_def.h>
 #include <src/indev/lv_indev.h>
+#include <src/libs/tiny_ttf/lv_tiny_ttf.h>
 #include <src/misc/lv_anim.h>
 #include <src/misc/lv_area.h>
 #include <src/misc/lv_style.h>
+#include "b612_font.h"
 
 // make sure these numbers align with SDL_HOR_RES/SDL_VER_RES
 #define MY_DISP_HOR_RES 800
@@ -145,7 +147,8 @@ void uithread(int _argc, char* _argv[])
   // lv_group_t* g = lv_group_create();
   // lv_group_set_default(g);
 
-  static lv_font_t *B612font = lv_tiny_ttf_create_file_ex("A:B612-Regular.ttf", 14, LV_FONT_KERNING_NORMAL, 1024);
+
+  static lv_font_t* B612font = lv_tiny_ttf_create_data_ex(B612_Regular_ttf, B612_Regular_ttf_len, 14, LV_FONT_KERNING_NORMAL, 1024);
   static lv_style_t B612style;
   lv_style_init(&B612style);
   lv_style_set_text_font(&B612style, B612font);

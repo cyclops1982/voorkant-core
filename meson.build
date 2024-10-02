@@ -199,6 +199,7 @@ if get_option('front-lvgl').enabled()
             'src/Backend.cpp',
             'src/HAEntity.cpp',
             'src/WSConn.cpp',
+            'src/b612_font.h',
             'src/uicomponents/imgs/colorwheel24.c',
             'src/uicomponents/imgs/colortemp24.c',
             'src/uicomponents/imgs/brightness24.c',

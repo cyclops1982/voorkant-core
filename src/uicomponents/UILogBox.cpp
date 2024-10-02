@@ -3,7 +3,7 @@
 #include "logger.hpp"
 #include "uicomponents/UIComponents.hpp"
 
-UILogBox::UILogBox(lv_obj_t* _parent, lv_style_t *_style) :
+UILogBox::UILogBox(lv_obj_t* _parent, lv_style_t* _style) :
   UIComponent(_parent)
 {
   /* logger box */
